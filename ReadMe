@@ -1,0 +1,3 @@
+1 - Provision Ec2 with terraform
+2 - install docker on ec2 instance using ansible
+3 - install docker compose on ec2 using url because it's not part of yum 
