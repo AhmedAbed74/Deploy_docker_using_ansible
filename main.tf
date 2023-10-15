@@ -110,11 +110,11 @@ resource "aws_instance" "ec2" {
      tags = {
     Name: "${var.env_prefix}-my-ec2"
     }
-    }
 resource "null_resource" "enable_ansible"{
     provisioner "local-exec" {
         working_dir = "../Deploy_docker_using_ansible"
         command = "ansible-playbook --inventory ${aws_instance.ec2.public_ip}, --private-key ${var_ssh_private} --user ec2-user deploy_docker_new_user.yaml"
     
     }
+}
 } 
