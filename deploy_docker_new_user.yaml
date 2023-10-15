@@ -1,6 +1,19 @@
 ---
+- name: wait for ec2 to esablish 
+  hosts: all
+  gather_facts: False
+  tasks:
+    - name: ensure ssh to be open
+      wait_for:
+        port: 22
+        delay: 10
+        timout: 100
+        search_regex: OpenSSH
+        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+
+
 - name: Install Docker and docker compose on Ec2
-  hosts: docker_server
+  hosts: all
   become: yes
   gather_facts: False
   tasks:
@@ -30,7 +43,7 @@
 
  
 - name: Creat linux user 
-  hosts: docker_server
+  hosts: all
   become: yes
   tasks: 
     - name: Creat linux user
@@ -39,7 +52,7 @@
         groups: adm,docker 
 
 - name: Start docker
-  hosts: docker_server
+  hosts: all
   become: yes
   become_user: ahmed 
   vars_prompt:
