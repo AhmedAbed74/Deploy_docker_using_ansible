@@ -110,6 +110,8 @@ resource "aws_instance" "ec2" {
      tags = {
     Name: "${var.env_prefix}-my-ec2"
     }
+}
+// to make the ansible playbook run automatically 
 resource "null_resource" "enable_ansible"{
     provisioner "local-exec" {
         working_dir = "../Deploy_docker_using_ansible"
@@ -117,4 +119,4 @@ resource "null_resource" "enable_ansible"{
     
     }
 }
-} 
+ 
