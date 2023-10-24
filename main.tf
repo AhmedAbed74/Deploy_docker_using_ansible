@@ -12,6 +12,7 @@ variable instance_type {}
 variable my_public_key {}
 
 resource "aws_vpc" "my_vpc" {
+    enable_dns_hostnames = true
     cidr_block = var.vpc_cidir_block
     tags= {
         Name: "${var.env_prefix}-vpc"
